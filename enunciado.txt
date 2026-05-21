@@ -1,0 +1,167 @@
+Laboratorio 5
+Requisitos de finalización
+Apertura: miércoles, 13 de mayo de 2026, 09:00
+Interpretar y desarrollar el siguiente programa a partir de su Diagrama de Clases en UML.
+
+Codigo para PlantUML 
+
+
+
+@startuml
+skinparam classAttributeIconSize 0
+
+' =========================
+' ENUM
+' =========================
+
+enum EstadoPedido {
+    EN_PREPARACION
+    EN_ENVIO
+    ENTREGADO
+}
+
+' =========================
+' CLASES PRINCIPALES
+' =========================
+
+class Cliente {
+    - idCliente : int
+    - nombre : String
+    - apellido : String
+    - email : String
+    - direccion : String
+    - instagram : String
+    - facebook : String
+
+    + realizarPedido() : Pedido
+    + verHistorialPedidos() : void
+}
+
+class ClientePreferencial {
+    - porcentajeDescuento : double
+    - puntosAcumulados : int
+
+    + aplicarDescuento() : double
+    + acumularPuntos() : void
+    + canjearBeneficios() : void
+}
+
+class Pedido {
+    - idPedido : int
+    - fecha : Date
+    - total : double
+    - estado : EstadoPedido
+
+    + agregarDetalle(detalle:DetallePedido) : void
+    + calcularTotal() : double
+    + confirmarPedido() : void
+    + generarPago() : Pago
+    + cambiarEstado() : void
+}
+
+class DetallePedido {
+    - cantidad : int
+    - subtotal : double
+
+    + calcularSubtotal(producto:Producto) : double
+}
+
+class Pago {
+    - idPago : int
+    - monto : double
+    - fechaPago : Date
+
+    + procesarPago() : boolean
+    + emitirComprobante() : void
+}
+
+class TarjetaCredito {
+    - numeroTarjeta : String
+    - banco : String
+
+    + validarTarjeta() : boolean
+}
+
+class MercadoPago {
+    - aliasCuenta : String
+
+    + validarCuenta() : boolean
+}
+
+class Producto {
+    - idProducto : int
+    - nombre : String
+    - precio : double
+    - valorCosto : double
+    - stock : int
+    - graduacionAlcoholica : double
+
+    + actualizarStock(cantidad:int) : void
+    + verificarStock(cantidad:int) : boolean
+    + calcularGanancia() : double
+}
+
+class Vino {
+    - tipoVino : String
+
+    + mostrarMaridaje() : void
+}
+
+class Cerveza {
+    - tipoCerveza : String
+
+    + servirFria() : void
+}
+
+class Whisky {
+    - aniosAnejamiento : int
+
+    + mostrarAntiguedad() : void
+}
+
+class Proveedor {
+    - idProveedor : int
+    - nombreEmpresa : String
+    - nombreContacto : String
+    - telefono : String
+    - email : String
+
+    + suministrarProducto(producto:Producto) : void
+    + actualizarCatalogo() : void
+    + contactarProveedor() : void
+}
+
+' =========================
+' GENERALIZACION
+' =========================
+
+Cliente <|-- ClientePreferencial
+
+Producto <|-- Vino
+Producto <|-- Cerveza
+Producto <|-- Whisky
+
+Pago <|-- TarjetaCredito
+Pago <|-- MercadoPago
+
+' =========================
+' ASOCIACIONES
+' =========================
+
+Cliente "1" --> "0..*" Pedido : realiza
+
+Proveedor "1" --> "0..*" Producto : suministra
+
+DetallePedido "1" --> "1" Producto : contiene
+
+Pedido --> EstadoPedido
+
+' =========================
+' COMPOSICION
+' =========================
+
+Pedido "1" *-- "1..*" DetallePedido : incluye
+
+Pedido "1" *-- "1" Pago : genera
+
+@enduml
