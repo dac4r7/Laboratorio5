@@ -11,15 +11,15 @@ import com.lab1.laboratorio5.productos.Producto;
 
 /**
  *
- * @author diego
+ * @author Diego Adrian Cesarin
  */
 public class DetallePedido {
     private int cantidad;
     private double subtotal;
 
-    public DetallePedido(int cantidad, double subtotal) {
+    public DetallePedido(int cantidad, double subtotal,Producto producto) {
         this.cantidad = cantidad;
-        this.subtotal = subtotal;
+        this.subtotal = calcularSubtotal( producto);
     }
     
     public double calcularSubtotal( Producto producto){

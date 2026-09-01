@@ -12,13 +12,13 @@ import java.util.Date;
 
 /**
  *
- * @author diego
+ * @author Diego Adrian Cesarin
  */
 public class Pago {
     
     private int idPago;
     private double monto;
-    private Date fechaPago;
+    private Date fechaPago = null;
     
     public Pago(int idPago, double monto, Date fechaPago) {
         this.idPago = idPago;

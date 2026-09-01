@@ -7,15 +7,15 @@ package com.lab1.laboratorio5.productos;
 
 /**
  *
- * @author Diego A. Cesarin
+ * @author Diego Adrian Cesarin
  */
 public class Proveedor {
     
     private int idProveedor;
-    private String nombreEmpresa;
+    private String nombreEmpresa = null;
     private final String nombreContacto ="";
-    private String telefono;
-    private String email;
+    private String telefono = null;
+    private String email = null;
 
     public Proveedor(int idProveedor, String nombreEmpresa, String telefono, String email) {
         this.idProveedor = idProveedor;

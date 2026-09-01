@@ -9,12 +9,12 @@ package com.lab1.laboratorio5.productos;
 
 /**
  *
- * @author diego
+ * @author Diego Adrian Cesarin
  */
 public class Producto {
     
     private int idProducto;
-    private String nombre;
+    private String nombre = null;
     private double precio;
     private double ValorCosto;
     private int stock;

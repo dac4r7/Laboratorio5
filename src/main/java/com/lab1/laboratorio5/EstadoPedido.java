@@ -7,6 +7,6 @@ package com.lab1.laboratorio5;
 
 /**
  *
- * @author diego
+ * @author Diego Adrian Cesarin
  */
  enum EstadoPedido{EN_PREPARACION , EN_ENVIO , ENTREGADO }
